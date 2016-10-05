@@ -9,8 +9,8 @@ var NodeHelper = require('node_helper');
 var request = require('request');
 var validUrl = require('valid-url');
 
-var validAPIs = ["ticndb", "tambal"];
-var apiUrls = ["http://api.icndb.com/jokes/random", "http://tambal.azurewebsites.net/joke/random"];
+var validAPIs = ["ticndb", "tambal","taeglicheszitat"];
+var apiUrls = ["http://api.icndb.com/jokes/random", "http://tambal.azurewebsites.net/joke/random", "http://taeglicheszit.at/zitat-api.php?format=json"];
 
 var JokeFetcher = function(url, api, reloadInterval) {
     var self = this;
@@ -35,7 +35,7 @@ var JokeFetcher = function(url, api, reloadInterval) {
             if (!error && response.statusCode == 200) {
                 //console.log('Jokes_Helper: '+ body);
                 var data = JSON.parse(body);
-                //console.log(data);
+				//console.log(data);
                 //console.log(api);
                 switch (api){
                     case "ticndb":
@@ -47,6 +47,9 @@ var JokeFetcher = function(url, api, reloadInterval) {
                     case "webknox":
                         joke = data.joke;
                         break;
+					case "taeglicheszitat":
+						joke = data.zitat;
+						break;
                 }
                 //console.log('got data: '+ joke);
                 self.broadcastEvents();
