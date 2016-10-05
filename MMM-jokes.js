@@ -55,7 +55,7 @@ Module.register('MMM-jokes',{
     getDom: function() {
         var joke = document.createTextNode(this.decodeHtml(this.joke));
         var wrapper = document.createElement("div");
-        wrapper.className = 'thin large bright';
+        wrapper.className = 'thin medium bright';
         wrapper.appendChild(joke);
 
         return wrapper;
